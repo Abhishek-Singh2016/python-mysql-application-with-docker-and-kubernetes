@@ -6,6 +6,7 @@ WORKDIR /usr/app/src
 # take all files located in the current dir and copy them into the image
 COPY . .
 
+RUN pip install --upgrade pip
 # install modules into the image
 RUN pip install -r requirements.txt
 
