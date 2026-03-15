@@ -1,7 +1,7 @@
 name: app build and deploy on k8s
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   workflow_dispatch: # This enables the manual "Run workflow" button
 jobs:
   buildecr:
@@ -20,5 +20,5 @@ jobs:
           ./build-image-kubernetes.sh
           docker image list
 
-          
+
   
