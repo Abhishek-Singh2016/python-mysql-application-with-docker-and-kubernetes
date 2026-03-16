@@ -39,15 +39,6 @@ jobs:
           #docker pull 702175642104.dkr.ecr.us-east-1.amazonaws.com/abhishek-ecr/abhishek-ecr:Terraform_golden_image_v1.0.16
 
 
-      - name: Build, Tag, and Push
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPO: ${{ inputs.ecr-repository }}
-          TAG: ${{ inputs.image-tag }}
-        run: |
-          docker build -t $ECR_REGISTRY/$REPO:$TAG ${{ inputs.dockerfile-context }}
-          docker push $ECR_REGISTRY/$REPO:$TAG
-
 
 
   
