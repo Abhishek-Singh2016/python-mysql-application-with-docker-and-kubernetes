@@ -4,7 +4,7 @@ on:
     branches: [ "main" ]
   workflow_dispatch: # This enables the manual "Run workflow" button
 jobs:
-  buildecr:
+  Build-app-DB:
     runs-on: ubuntu-latest
     permissions:
       id-token: write   # Required for OIDC
