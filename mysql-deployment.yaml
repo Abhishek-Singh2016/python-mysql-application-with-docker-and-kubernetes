@@ -66,8 +66,8 @@ spec:
           #value: <your password>
           valueFrom:
             secretKeyRef:
-              name: mysql-pass
-              key: password
+              name: database-secret
+              key: mysql-password
         - name: MYSQL_DATABASE
           value: mov
           # valueFrom:

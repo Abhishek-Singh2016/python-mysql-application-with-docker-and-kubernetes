@@ -48,19 +48,6 @@ def read_configuration() -> AppConfig:
     env_path = os.getcwd() + "/" + env_file   # works only if you run the file from the file's own directory
     print(env_path)  # /usr/app/src/env_docker_compose.env
     load_dotenv(env_path)  # take environment variables from .env file
-    config = {
-        "APP": {
-            "LOGGING_CONFIG": os.environ.get("APP_LOGGING_CONFIG", "default_log_config"),
-            "SAVE_FOLDER": os.environ.get("APP_SAVE_FOLDER", "/tmp/save")
-        },
-        "DB_MOVIE": {
-            "HOST":     os.environ.get("DB_MOVIE_HOST", "localhost"),
-            "DATABASE": os.environ.get("DB_MOVIE_DATABASE", "movie_db"),
-            "USER":     os.environ.get("DB_MOVIE_USER", "root"),
-            "PASSWORD": os.environ.get("DB_MOVIE_PASSWORD"), # No default for passwords (safety)
-            "PORT":     int(os.environ.get("DB_MOVIE_PORT", 3306)) # Cast to int manually
-        }
-    }
 
     config = AppConfig()
     config.add_source(EnvironmentConfigSource())

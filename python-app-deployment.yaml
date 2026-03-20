@@ -34,7 +34,7 @@ spec:
       containers:
       - name: python-app
         # name of the image that we re using to create the container. after building the image with docker, the image has to be uploaded to minikube
-        image: docker.io/library/image_mov_app_python:latest
+        image: 702175642104.dkr.ecr.us-east-1.amazonaws.com/abhishek-ecr/abhishek-ecr:Python-mysql-app-v1.0.${{ github.run_number }}
         # <docker hub username>/<image name>
         #image: vcr131/image_mov_app_python:latest  
         # Never is image is local. 
@@ -56,17 +56,17 @@ spec:
           value: "3307"
         - name: DB_NAME
           value: mov
-        # - name: USER_NAME
-        #   valueFrom:
-        #     secretKeyRef:
-        #       name: database-secret
-        #       key: mysql-user
-        # - name: USER_PWD
-        #   valueFrom:
+        - name: USER_NAME
+          valueFrom:
+            secretKeyRef:
+              name: database-secret
+              key: mysql-user
+        - name: USER_PWD
+          valueFrom:
         #     # tell the app to get these from the file with kind: Secret
-        #     secretKeyRef:
-        #       name: database-secret
-        #       key: mysql-password
+            secretKeyRef:
+              name: database-secret
+              key: mysql-password
         # - name: DB_URL
         #   valueFrom:
             # tell the app to get the db endpoint where it must connect from the file with kind: ConfigMap
@@ -76,8 +76,8 @@ spec:
             #   # key of the data section? in the config map file
             #   key: mysql-url
         #command: ["python", "main.py"]
-      # imagePullSecrets:
-      #   - name: dockerhub-credentials
+      imagePullSecrets:
+         - name: abhishek-helm-development
 
 # delimiter
 # ---
