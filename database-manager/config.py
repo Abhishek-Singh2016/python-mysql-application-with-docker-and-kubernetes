@@ -1,5 +1,5 @@
 from typedconfig import Config, key, section, group_key
-from typedconfig.source import EnvironmentConfigSource # pipenv install typed-config
+from typedconfig.source import EnvironmentConfigSource, DictConfigSource # pipenv install typed-config
 import os
 import json
 from dotenv import load_dotenv # pipenv install python-dotenv
@@ -12,9 +12,8 @@ def parse_string(string):
 
 @section('APP')
 class APP(Config):
-    LOGGING_CONFIG = key(cast=str)
-    # LOGGING_FILE = key(cast=str)
-    SAVE_FOLDER = key(cast=str)
+    LOGGING_CONFIG = key(cast=str, default="logging_production_k8s.config")
+    SAVE_FOLDER = key(cast=str, default="/tmp/save")
 
 
 @section('DB_MOVIE')

@@ -1,0 +1,38 @@
+from typedconfig.source import EnvironmentConfigSource, DictConfigSource
+import os
+from typedconfig import Config, key, section, group_key
+from typedconfig.source import EnvironmentConfigSource # pipenv install typed-config
+import os
+import json
+from dotenv import load_dotenv # pipenv install python-dotenv
+
+def read_configuration() -> AppConfig:
+    # 1. Define your manual defaults in a nested dictionary
+    # Note: These do NOT need the prefixes (like APP_) because 
+    # DictConfigSource maps them directly to the sections.
+    default_settings = {
+        "APP": {
+            "LOGGING_CONFIG": "logging_production_k8s.config",
+            "SAVE_FOLDER": "/tmp/save"
+        },
+        "DB_MOVIE": {
+            "HOST":     os.environ.get("DB_HOST", "mysql-service"),
+            "DATABASE": os.environ.get("DB_NAME", "mov"),
+            "USER":     os.environ.get("USER_NAME"),
+            "PASSWORD": os.environ.get("USER_PWD"), # No default for passwords (safety)
+            "PORT":     int(os.environ.get("DB_PORT")) # Cast to int manually
+        }
+    }
+
+    config = AppConfig()
+
+    # 2. Add Environment source FIRST (Highest Priority)
+    # It looks for APP_LOGGING_CONFIG, DB_MOVIE_HOST, etc.
+    config.add_source(EnvironmentConfigSource())
+
+    # 3. Add Dictionary source SECOND (Fallback/Default)
+    config.add_source(DictConfigSource(default_settings))
+
+    # 4. Finalize
+    config.read()
+    return config
