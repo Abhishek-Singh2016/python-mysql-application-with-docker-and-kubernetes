@@ -22,12 +22,19 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
+      - name: Set up Kubeconfig
+        run: |
+          echo "${{ secrets.KUBECONFIG_DATA }}" > kubeconfig.yaml
+          pwd
+          export KUBECONFIG=$PWD/kubeconfig.yaml
+          
 
       - name: image creation and push to ecr
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPO: abhishek-ecr/abhishek-ecr
           TAG: v1.0.${{ github.run_number }}
+          KUBECONFIG: ./kubeconfig.yaml
         
         run: |
           cd database-manager
