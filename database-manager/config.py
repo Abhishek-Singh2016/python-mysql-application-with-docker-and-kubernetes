@@ -47,7 +47,7 @@ def read_configuration() -> AppConfig:
     #env_path = os.getcwd() + "/" + env_file   # works only if you run the file from the file's own directory
     #print(env_path)  # /usr/app/src/env_docker_compose.env
     #load_dotenv(env_path)  # take environment variables from .env file
-    config = {
+    manual_dict = {
         "APP": {
             "LOGGING_CONFIG": os.environ.get("APP_LOGGING_CONFIG", "logging_production_k8s.config"),
             "SAVE_FOLDER": os.environ.get("APP_SAVE_FOLDER", "/tmp/save")
@@ -55,17 +55,19 @@ def read_configuration() -> AppConfig:
         "DB_MOVIE": {
             "HOST":     os.environ.get("DB_HOST", "mysql-service"),
             "DATABASE": os.environ.get("DB_NAME", "mov"),
-            "USER":     os.environ.get("USER_NAME"),
-            "PASSWORD": os.environ.get("USER_PWD"), # No default for passwords (safety)
-            "PORT":     int(os.environ.get("DB_PORT")) # Cast to int manually
+            "USER":     os.environ.get("USER_NAME", ""),
+            "PASSWORD": os.environ.get("USER_PWD", ""), # No default for passwords (safety)
+            "PORT":     str(os.environ.get("DB_PORT", "3307")) # Cast to int manually
         }
     }
-
+    #AppConfig
     config = AppConfig()
     config.add_source(EnvironmentConfigSource())
+    config.add_source(DictConfigSource(manual_dict))
     config.read()
     return config
 
 config = read_configuration()
+print(config)
 print(config.APP.LOGGING_CONFIG)
-# print(config.DB_MOVIE.PASSWORD)  
+print(config.DB_MOVIE.PASSWORD)  
