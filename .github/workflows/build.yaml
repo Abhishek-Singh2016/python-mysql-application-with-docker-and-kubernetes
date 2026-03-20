@@ -48,6 +48,8 @@ jobs:
           license_key = 6811cbe35c008b8c4fb8e02b5c6a4025FFFFNRAL
           ...
           app_name = pythonapp-db
+          log_file = /tmp/newrelic-python-agent.log
+          log_level = debug
           ...
           EOF
           chmod +x build-image-kubernetes.sh
