@@ -50,6 +50,11 @@ jobs:
           docker image list
           cd ..
           pwd
+          kubectl create secret docker-registry ecr-pull-secret \
+          --docker-server=${{ steps.login-ecr.outputs.registry }} \
+          --docker-username=AWS \
+          --docker-password=$(aws ecr get-login-password --region us-east-1) \
+          --namespace=default
           kubectl apply -f ./python-app-deployment.yaml --kubeconfig=./kubeconfig.yaml
           #kubectl apply -f ./python-app-service.yaml --kubeconfig=./kubeconfig.yaml
           kubectl apply -f ./mysql-deployment.yaml --kubeconfig=./kubeconfig.yaml
