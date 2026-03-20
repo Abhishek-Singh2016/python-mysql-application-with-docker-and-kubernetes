@@ -47,7 +47,7 @@ spec:
         #image: docker.io/library/hardware_app_mysql_minikube:latest
         # Any other value than Never does not work with minikube and local images. Never = the kubelet does not try fetching the image. If the image is somehow already present locally, the kubelet attempts to start the container; otherwise, startup fails. 
         # If you want to rely on pre-pulled images as a substitute for registry authentication, you must ensure all nodes in the cluster have the same pre-pulled images.
-        imagePullPolicy: Never
+        imagePullPolicy: IfNotPresent
         ports:
           # the port the container listens on. u find the value of the port on dockerhub tags tab, in the image details. MySQL is running on port 3306 inside the pod. tried with 3307 and did not work
           - containerPort: 3306
@@ -74,7 +74,8 @@ spec:
           #   secretKeyRef:
           #     name: database-secret
           #     key: mysql-password
-
+  imagePullSecrets:
+         - name: ecr-pull-secret
 
 # separation between configurations
 #---

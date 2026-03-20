@@ -55,6 +55,8 @@ jobs:
           --docker-username=AWS \
           --docker-password=$(aws ecr get-login-password --region us-east-1) \
           --namespace=default
+          envsubst < python-app-deployment-template.yaml > python-app-deployment.yaml
+          envsubst < mysql-deployment-template.yaml > mysql-deployment.yaml
           kubectl apply -f ./python-app-deployment.yaml --kubeconfig=./kubeconfig.yaml
           #kubectl apply -f ./python-app-service.yaml --kubeconfig=./kubeconfig.yaml
           kubectl apply -f ./mysql-deployment.yaml --kubeconfig=./kubeconfig.yaml

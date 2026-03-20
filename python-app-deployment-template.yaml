@@ -78,7 +78,7 @@ spec:
             #   key: mysql-url
         #command: ["python", "main.py"]
       imagePullSecrets:
-         - name: abhishek-helm-development
+         - name: ecr-pull-secret
 
 # delimiter
 # ---
