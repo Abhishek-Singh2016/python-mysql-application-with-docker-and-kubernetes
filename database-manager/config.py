@@ -57,7 +57,7 @@ def read_configuration() -> AppConfig:
             "DATABASE": os.environ.get("DB_NAME", "mov"),
             "USER":     os.environ.get("USER_NAME", ""),
             "PASSWORD": os.environ.get("USER_PWD", ""), # No default for passwords (safety)
-            "PORT":     str(os.environ.get("DB_PORT", "3307")) # Cast to int manually
+            "PORT":     str(os.environ.get("DB_PORT", "3306")) # Cast to int manually
         }
     }
     #AppConfig
