@@ -45,7 +45,7 @@ jobs:
           chmod +x build-image-kubernetes.sh
           #./build-image-kubernetes.sh
           cd ../database-sql
-          #chmod +x build-image-kubernetes.sh
+          chmod +x build-image-kubernetes.sh
           ./build-image-kubernetes.sh
           docker image list
           kubectl apply -f ../python-app-deployment.yaml --kubeconfig=../kubeconfig.yaml
