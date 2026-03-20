@@ -50,7 +50,7 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
           # the port the container listens on. u find the value of the port on dockerhub tags tab, in the image details. MySQL is running on port 3306 inside the pod. tried with 3307 and did not work
-          - containerPort: 3306
+          - containerPort: 3307
             # Naming ports allows you to change the exposed port without changing files that reference that port.
             # name: http
         # u get this info from the mongo db docker hub page. configure the env variables. when the container start, the root user with these credentials will be created
