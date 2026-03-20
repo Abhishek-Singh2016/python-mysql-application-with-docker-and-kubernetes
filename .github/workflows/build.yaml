@@ -50,16 +50,16 @@ jobs:
           docker image list
           cd ..
           pwd
-          kubectl apply -f ../python-app-deployment.yaml --kubeconfig=./kubeconfig.yaml
-          #kubectl apply -f ../python-app-service.yaml --kubeconfig=./kubeconfig.yaml
-          kubectl apply -f ../mysql-deployment.yaml --kubeconfig=./kubeconfig.yaml
-          kubectl apply -f ../mysql-service.yaml --kubeconfig=./kubeconfig.yaml
-          kubectl apply -f ../mysql-secret%20model.yaml --kubeconfig=./kubeconfig.yaml
-          kubectl apply -f ../python-app-secret.yaml --kubeconfig=./kubeconfig.yaml
-          kubectl apply -f ../pv.yaml --kubeconfig=./kubeconfig.yaml
-          kubectl apply -f ../pvc.yaml --kubeconfig=./kubeconfig.yaml
+          kubectl apply -f ./python-app-deployment.yaml --kubeconfig=./kubeconfig.yaml
+          #kubectl apply -f ./python-app-service.yaml --kubeconfig=./kubeconfig.yaml
+          kubectl apply -f ./mysql-deployment.yaml --kubeconfig=./kubeconfig.yaml
+          kubectl apply -f ./mysql-service.yaml --kubeconfig=./kubeconfig.yaml
+          kubectl apply -f ./mysql-secret%20model.yaml --kubeconfig=./kubeconfig.yaml
+          kubectl apply -f ./python-app-secret.yaml --kubeconfig=./kubeconfig.yaml
+          kubectl apply -f ./pv.yaml --kubeconfig=./kubeconfig.yaml
+          kubectl apply -f ./pvc.yaml --kubeconfig=./kubeconfig.yaml
           kubectl get all --kubeconfig=./kubeconfig.yaml
-          kubectl get secrets --kubeconfig=../kubeconfig.yaml
+          kubectl get secrets --kubeconfig=./kubeconfig.yaml
           
           #docker pull 702175642104.dkr.ecr.us-east-1.amazonaws.com/abhishek-ecr/abhishek-ecr:Terraform_golden_image_v1.0.16
 
