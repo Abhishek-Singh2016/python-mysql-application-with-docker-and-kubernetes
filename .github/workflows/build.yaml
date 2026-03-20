@@ -43,10 +43,10 @@ jobs:
           export KUBECONFIG=$PWD/kubeconfig.yaml
           cd database-manager
           chmod +x build-image-kubernetes.sh
-          #./build-image-kubernetes.sh
+          ./build-image-kubernetes.sh
           cd ../database-sql
           chmod +x build-image-kubernetes.sh
-          #./build-image-kubernetes.sh
+          ./build-image-kubernetes.sh
           docker image list
           cd ..
           pwd
