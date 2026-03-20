@@ -74,8 +74,8 @@ spec:
           #   secretKeyRef:
           #     name: database-secret
           #     key: mysql-password
-  imagePullSecrets:
-         - name: ecr-pull-secret
+      imagePullSecrets:
+        - name: ecr-pull-secret
 
 # separation between configurations
 #---
