@@ -68,5 +68,5 @@ def read_configuration() -> AppConfig:
     return config
 
 config = read_configuration()
-print(config.APP.LOGGING_CONFIG)
+#print(config.APP.LOGGING_CONFIG)
 # print(config.DB_MOVIE.PASSWORD)  
