@@ -50,7 +50,7 @@ jobs:
           docker image list
           cd ..
           pwd
-          kubectl create secret docker-registry ecr-pull-secret \
+          #kubectl create secret docker-registry ecr-pull-secret \
           --docker-server=${{ steps.login-ecr.outputs.registry }}/${{ env.REPO }} \
           --docker-username=AWS \
           --docker-password=$(aws ecr get-login-password --region us-east-1) \

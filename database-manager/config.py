@@ -41,24 +41,24 @@ def read_configuration() -> AppConfig:
 
 
     # option for using env files in the same folder as the script:
-    env_file = "env_movie_app_k8s.env"
+    #env_file = "env_movie_app_k8s.env"
     #env_file = "env_movie_app_docker_compose.env"
     #env_file = "env_movie_app_local_db.env"
     #env_file = "env_movie_app_ubuntu.env"
-    env_path = os.getcwd() + "/" + env_file   # works only if you run the file from the file's own directory
-    print(env_path)  # /usr/app/src/env_docker_compose.env
-    load_dotenv(env_path)  # take environment variables from .env file
+    #env_path = os.getcwd() + "/" + env_file   # works only if you run the file from the file's own directory
+    #print(env_path)  # /usr/app/src/env_docker_compose.env
+    #load_dotenv(env_path)  # take environment variables from .env file
     config = {
         "APP": {
-            "LOGGING_CONFIG": os.environ.get("APP_LOGGING_CONFIG", "default_log_config"),
+            "LOGGING_CONFIG": os.environ.get("APP_LOGGING_CONFIG", "logging_production_k8s.config"),
             "SAVE_FOLDER": os.environ.get("APP_SAVE_FOLDER", "/tmp/save")
         },
         "DB_MOVIE": {
-            "HOST":     os.environ.get("DB_MOVIE_HOST", "localhost"),
-            "DATABASE": os.environ.get("DB_MOVIE_DATABASE", "movie_db"),
-            "USER":     os.environ.get("DB_MOVIE_USER", "root"),
-            "PASSWORD": os.environ.get("DB_MOVIE_PASSWORD"), # No default for passwords (safety)
-            "PORT":     int(os.environ.get("DB_MOVIE_PORT", 3306)) # Cast to int manually
+            "HOST":     os.environ.get("DB_HOST", "mysql-service"),
+            "DATABASE": os.environ.get("DB_NAME", "mov"),
+            "USER":     os.environ.get("USER_NAME"),
+            "PASSWORD": os.environ.get("USER_PWD"), # No default for passwords (safety)
+            "PORT":     int(os.environ.get("DB_PORT")) # Cast to int manually
         }
     }
 
@@ -68,5 +68,5 @@ def read_configuration() -> AppConfig:
     return config
 
 config = read_configuration()
-#print(config.APP.LOGGING_CONFIG)
+print(config.APP.LOGGING_CONFIG)
 # print(config.DB_MOVIE.PASSWORD)  
