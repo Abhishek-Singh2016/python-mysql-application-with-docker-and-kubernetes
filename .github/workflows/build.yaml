@@ -42,6 +42,14 @@ jobs:
           pwd
           export KUBECONFIG=$PWD/kubeconfig.yaml
           cd database-manager
+          newrelic-admin generate-config 6811cbe35c008b8c4fb8e02b5c6a4025FFFFNRAL newrelic.ini
+          cat << EOF >> newrelic.ini
+          ...
+          license_key = 6811cbe35c008b8c4fb8e02b5c6a4025FFFFNRAL
+          ...
+          app_name = pythonapp-db
+          ...
+          EOF
           chmod +x build-image-kubernetes.sh
           ./build-image-kubernetes.sh
           cd ../database-sql
