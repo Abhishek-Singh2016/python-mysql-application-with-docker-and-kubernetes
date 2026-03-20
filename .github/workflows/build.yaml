@@ -54,7 +54,7 @@ jobs:
           #kubectl apply -f ./python-app-service.yaml --kubeconfig=./kubeconfig.yaml
           kubectl apply -f ./mysql-deployment.yaml --kubeconfig=./kubeconfig.yaml
           kubectl apply -f ./mysql-service.yaml --kubeconfig=./kubeconfig.yaml
-          kubectl apply -f ./mysql-secret%20model.yaml --kubeconfig=./kubeconfig.yaml
+          kubectl apply -f ./mysql-secret-model.yaml --kubeconfig=./kubeconfig.yaml
           kubectl apply -f ./python-app-secret.yaml --kubeconfig=./kubeconfig.yaml
           kubectl apply -f ./pv.yaml --kubeconfig=./kubeconfig.yaml
           kubectl apply -f ./pvc.yaml --kubeconfig=./kubeconfig.yaml
