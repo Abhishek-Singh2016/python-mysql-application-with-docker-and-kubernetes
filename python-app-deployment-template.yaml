@@ -20,11 +20,11 @@ spec:
   selector:
     # labels enable the system to query the cluster for objects that match a label with a specific name. Deployments make use of a label to find and group pods.
     matchLabels:
-      app: python-app
+      app: app-python-app
   template:
     metadata:
       labels:
-        app: python-app
+        app: app-python-app
     spec:
       volumes:
         # defines the volume named "log-volume" and associates it with the Persistent Volume Claim (PVC) log-pvc.
@@ -32,7 +32,7 @@ spec:
           persistentVolumeClaim:
             claimName: log-pvc
       containers:
-      - name: python-app
+      - name: app-python-app
         # name of the image that we re using to create the container. after building the image with docker, the image has to be uploaded to minikube
         image: 702175642104.dkr.ecr.us-east-1.amazonaws.com/abhishek-ecr/abhishek-ecr:Python-mysql-app-$TAG
         #mysql-db-$TAG
@@ -78,7 +78,7 @@ spec:
             #   key: mysql-url
         #command: ["python", "main.py"]
       imagePullSecrets:
-         - name: ecr-pull-secret
+         - name: ecr-pull-image-secret
 
 # delimiter
 # ---
